@@ -5,6 +5,13 @@ from selenium.webdriver.common.keys import Keys
 
 from const import url,usr,pwd,driver
 
+inp_user_name = 'adil'
+inp_provisioner_id = '455324'
+passwd = '12345'
+rep_passwd = '12345'
+email = 'adil@gmail.com'
+
+
 
 def open_link():
 
