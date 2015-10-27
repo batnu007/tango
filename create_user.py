@@ -3,8 +3,12 @@ from selenium.webdriver.common.keys import Keys
 
 
 
-from const import url,usr,pwd,driver
+from const import url,usr,pwd
 
+#driver = webdriver.Firefox()
+#driver.close();
+
+driver = None
 # inp_user_name = 'adil'
 # inp_provisioner_id = '455324'
 # passwd = '12345'
@@ -16,6 +20,8 @@ from const import url,usr,pwd,driver
 def open_link():
 
 	try:
+		global driver
+		driver = webdriver.Firefox()
 		driver.get(url)
 		print "LINK OPEN SUCCESS..."
 	except :
@@ -25,6 +31,7 @@ def open_link():
 def login():
 
 	try:
+		global driver
 
 		user = driver.find_element_by_xpath("/html/body/center/form/table/tbody/tr[1]/td[2]/input")
 		passwd = driver.find_element_by_xpath("/html/body/center/form/table/tbody/tr[2]/td[2]/input")
@@ -42,6 +49,7 @@ def create_user():
 
 
 	try:
+		global driver
 
 		click_manage = driver.find_element_by_xpath('/html/body/center/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[14]/a')
 		click_manage.click()
@@ -91,6 +99,8 @@ def create_user():
 
 def close():
 
+	global driver
+
 	try:
 		driver.close()
 		print "LINK CLOSED SUCCESSFULLY........"
@@ -102,13 +112,13 @@ def close():
 ########## Function Calls #############
 
 with open('data.csv') as inp_file:
-	for each_line in inp_file:
+	for each_line in inp_file:		
 		inp_user_name,inp_provisioner_id,passwd,rep_passwd,email = each_line.split(',')
-		# print inp_user_name
-		# print inp_provisioner_id
-		# print passwd
-		# print rep_passwd
-		# print email
+		print inp_user_name
+		print inp_provisioner_id
+		print passwd
+		print rep_passwd
+		print email
 		try:
 			open_link()
 			login()
